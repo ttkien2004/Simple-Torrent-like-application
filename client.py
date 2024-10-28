@@ -16,10 +16,12 @@ import tkinter.filedialog
 from tkinter import simpledialog
 import tkinter.ttk as ttk
 import customtkinter
-
+import hashlib
 
 # aid
-from hashfunction import MD5_hash
+
+def MD5_hash(password):
+    return str(hashlib.md5(password.encode()).digest())
 
 # ----CONSTANT----#
 FORMAT = "utf-8"
@@ -184,7 +186,8 @@ class LoginPage(tk.Frame):
                                 self.login_user(username=self.username_entry.get(), password=self.password_entry.get())).pack(pady=(0, 10),padx=10)
         customtkinter.CTkLabel(self.frame, text="Bạn không có tài khoản ?", font=("Roboto", 11)).pack(pady=(10, 0),padx=10)
         customtkinter.CTkButton(self.frame, text='Đăng ký', font=customtkinter.CTkFont(size=12, weight="bold"),fg_color="#192655", cursor="hand2", command=lambda: controller.show_frame(RegisterPage)).pack(pady=(0, 10),padx=10)
-    
+
+
     def login_user(self, username, password):
         network_peer.name = str(username)
         # hash password by MD5 algorithm
