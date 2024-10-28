@@ -150,6 +150,3 @@ def delete_all_users():
     collection.delete_many({})
     client.close()
     return True
-
-# add_new_user('khanohope', '1234')
-delete_all_users()
